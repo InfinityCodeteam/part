@@ -50,6 +50,17 @@ async function init() {
     el.href = `https://wa.me/${settings.whatsapp}`;
   });
 
+  // Update contact page with settings
+  if (window.location.pathname.split('/').pop() === 'contact.html') {
+    document.getElementById('phone1').href = `tel:${settings.phone1}`;
+    document.getElementById('phone1').textContent = settings.phone1;
+    document.getElementById('phone2').href = `tel:${settings.phone2}`;
+    document.getElementById('phone2').textContent = settings.phone2;
+    document.getElementById('whatsapp').href = `https://wa.me/${settings.whatsapp}`;
+    document.getElementById('facebook').href = settings.facebook;
+    document.getElementById('instagram').href = settings.instagram;
+  }
+
   setCartBadge();
 
   const path = window.location.pathname.split('/').pop();
@@ -118,29 +129,31 @@ async function init() {
       renderProducts(filtered);
     }
 
-    function renderProducts(prods) {
-      const grid = document.getElementById('products-grid');
-      grid.innerHTML = '';
-      if (prods.length === 0) {
-        document.getElementById('no-results').classList.remove('hidden');
-        return;
-      }
-      document.getElementById('no-results').classList.add('hidden');
-      prods.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'card rounded-2xl shadow-md bg-white p-4 hover:shadow-lg transition-all duration-300 cursor-pointer';
-        card.innerHTML = `
-          <img src="${p.colors[0].images[0]}" alt="${p.name}" loading="lazy" class="w-full h-40 object-cover rounded-xl mb-2">
-          <h4 class="font-bold mb-1">${p.name}</h4>
-          <div class="flex gap-1 mb-2">
-            ${p.colors.map(c => `<div class="w-4 h-4 rounded-full" style="background-color: ${c.code};"></div>`).join('')}
-          </div>
-          <p class="text-primary font-bold">${formatPrice(p.price)}</p>
-          <div class="flex flex-col md:flex-row gap-2 mt-4">
-            <button class="details bg-secondary text-white rounded-2xl px-3 py-1 text-sm font-bold flex-1 transition-all duration-300" data-id="${p.id}">عرض التفاصيل</button>
-            <button class="add-cart bg-primary text-white rounded-2xl px-3 py-1 text-sm font-bold flex-1 transition-all duration-300" data-id="${p.id}" data-has-colors="${p.colors.length > 1}">إضافة للسلة</button>
-          </div>
-        `;
+  function renderProducts(prods) {
+  const grid = document.getElementById('products-grid');
+  grid.innerHTML = '';
+  if (prods.length === 0) {
+    document.getElementById('no-results').classList.remove('hidden');
+    return;
+  }
+  document.getElementById('no-results').classList.add('hidden');
+  prods.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card rounded-2xl shadow-md bg-white p-4 hover:shadow-lg transition-all duration-300 cursor-pointer';
+    card.innerHTML = `
+      <img src="${p.colors[0].images[0]}" alt="${p.name}" loading="lazy" class="w-full h-40 object-cover rounded-xl mb-2">
+      <h4 class="font-bold mb-1">${p.name}</h4>
+      <!-- 
+      <div class="flex flex-row flex-wrap gap-1 mb-2">
+        ${p.colors.map(c => `<div class="w-4 h-4 rounded-full" style="background-color: ${c.code};"></div>`).join('')}
+      </div>
+      -->
+      <p class="text-primary font-bold">${formatPrice(p.price)}</p>
+      <div class="flex flex-col md:flex-row gap-2 mt-4">
+        <button class="details bg-secondary text-white rounded-2xl px-3 py-1 text-sm font-bold flex-1 transition-all duration-300" data-id="${p.id}">عرض التفاصيل</button>
+        <button class="add-cart bg-primary text-white rounded-2xl px-3 py-1 text-sm font-bold flex-1 transition-all duration-300" data-id="${p.id}" data-has-colors="${p.colors.length > 1}">إضافة للسلة</button>
+      </div>
+    `;
         card.addEventListener('click', (e) => {
           if (!e.target.classList.contains('add-cart') && !e.target.classList.contains('details')) {
             window.location.href = `product.html?id=${p.id}`;
@@ -355,20 +368,18 @@ async function init() {
         return;
       }
 
-      let message = 'طلب جديد من PARTY!🛒🛍\n\nالمنتجات:\n';
+      let message = 'طلب جديد من PARTY!🛒\n\nالمنتجات:\n';
       let total = 0;
       cart.forEach((item, i) => {
         const lineTotal = item.price * item.quantity;
         total += lineTotal;
-        message += `${i + 1}) عدد (${item.quantity}) - ${item.name} - اللون: ${item.colorName} - ${formatPrice(lineTotal)}\n`;
+        message += `${i + 1}) ${item.name} - اللون: ${item.colorName} - العدد: ${item.quantity} - ${formatPrice(lineTotal)}\n`;
       });
       message += `\nالإجمالي: ${formatPrice(total)}\n(السعر بدون توصيل)\n\nبيانات العميل:\nالاسم: ${name}\nالموبايل: ${phone}\nالعنوان: ${address}\nملاحظات: ${notes}`;
 
       const encoded = encodeURIComponent(message);
       window.open(`https://wa.me/${settings.whatsapp}?text=${encoded}`, '_blank');
     });
-  } else if (path === 'contact.html') {
-    // No additional JS needed
   }
 }
 
