@@ -6,9 +6,9 @@
     "price": 15,
     "description": "بالونة هليوم عالية الجودة مناسبة للحفلات.",
     "colors": [
-      { "name": "أحمر", "code": "#ef4444", "images": ["images/balloon-red-1.jpg", "images/balloon-red-2.jpg"] },
-      { "name": "أزرق", "code": "#3b82f6", "images": ["images/balloon-blue-1.jpg"] },
-      { "name": "ذهبي", "code": "#f59e0b", "images": ["images/balloon-gold-1.jpg"] }
+      { "name": "أحمر", "code": "#ef4444", "images": ["https://png.pngtree.com/png-clipart/20241206/original/pngtree-colorful-balloons-party-decoration-with-decorative-items-png-image_17626940.png", "https://m.media-amazon.com/images/I/61QRFcpqEIL._AC_SL1500_.jpg"] },
+      { "name": "أزرق", "code": "#3b82f6", "images": ["https://m.media-amazon.com/images/I/71Z2h2tffFL._AC_SY450_.jpg"] },
+      { "name": "ذهبي", "code": "#f59e0b", "images": ["https://tse4.mm.bing.net/th/id/OIP.eUmaHY-omUTdFZfC3OQQLwHaHa?cb=thfvnext&w=2000&h=2000&rs=1&pid=ImgDetMain&o=7&rm=3"] }
     ]
   },
   {

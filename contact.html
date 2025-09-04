@@ -35,12 +35,12 @@
 </head>
 <body class="bg-white font-sans text-textprimary min-h-screen pb-20 md:pb-0">
     <!-- Toast Notification -->
-    <div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-success text-white px-6 py-3 rounded-2xl shadow-lg hidden animate-fade-in"></div>
+    <div id="toast" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-success text-white px-6 py-3 rounded-2xl shadow-lg hidden animate-fade-in"></div>
 
     <!-- Sticky Header -->
     <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-md shadow-md">
         <div class="max-w-screen-lg mx-auto px-4 py-3 flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-primary animate-fade-in">PARTY</h1>
+            <img src="images/logo.png" alt="PARTY" class="h-8 w-auto animate-fade-in">
             <div class="flex items-center gap-4">
                 <a href="cart.html" class="relative text-textsecondary">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -57,7 +57,10 @@
         <h1 class="text-2xl font-bold mb-6">اتصل بنا</h1>
         <div class="rounded-2xl shadow-md bg-white p-6 space-y-4 transition-all duration-300 hover:shadow-lg">
             <p>الهاتف: <a href="tel:201234567890" class="text-primary">201234567890</a></p>
+            <p>الهاتف 2: <a href="tel:201234567891" class="text-primary">201234567891</a></p>
             <p>واتساب: <a href="https://wa.me/201234567890" class="text-primary">اضغط هنا</a></p>
+            <p>فيسبوك: <a href="https://www.facebook.com/party" class="text-primary">party on Facebook</a></p>
+            <p>إنستجرام: <a href="https://www.instagram.com/party" class="text-primary">party on Instagram</a></p>
             <p>ساعات العمل: 9 صباحًا - 9 مساءً، يوميًا</p>
         </div>
 
@@ -77,4 +80,34 @@
                 <span>الرئيسية</span>
             </a>
             <a href="menu.html" class="flex flex-col items-center">
-                <svg
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                </svg>
+                <span>المنتجات</span>
+            </a>
+            <a href="cart.html" class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25c-.69 0-1.21-.578-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375 .375 0 01.75 0zm7.5 0a.375 .375 0 11-.75 0 .375 .375 0 01.75 0z" />
+                </svg>
+                <span>السلة</span>
+            </a>
+            <a href="contact.html" class="flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                <span>اتصل بنا</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating WhatsApp -->
+    <a id="whatsapp-float" href="#" class="fixed bottom-16 right-4 bg-success text-white p-4 rounded-full shadow-lg z-50 flex items-center justify-center active:scale-95 animate-fade-in">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c-.281.085-.547.216-.75.406a2.25 2.25 0 000 3.06c.203.19.469.32.75.406 1.18.358 1.18 2.04 0 2.398-.281.085-.547.216-.75.406a2.25 2.25 0 000 3.06c.203.19.469.32.75.406 1.18.358 1.18 2.04 0 2.398-.281.085-.547.216-.75.406a2.206 2.206 0 00-.294.706c-.071.378.182.75.562.75h16.125c.38 0 .633-.372.562-.75a2.206 2.206 0 00-.294-.706c-.281-.085-.547-.216-.75-.406-1.18-.358-1.18-2.04 0-2.398.281-.085.547-.216.75-.406a2.25 2.25 0 000-3.06c-.203-.19-.469-.32-.75-.406-1.18-.358-1.18-2.04 0-2.398-.281-.085-.547-.216-.75-.406a2.25 2.25 0 000-3.06c-.203-.19-.469-.32-.75-.406-1.18-.358-1.18-2.04 0-2.398H4.5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-3.75m3 3.75v-3.75m3 3.75V21" />
+        </svg>
+    </a>
+
+    <script src="./script.js" defer></script>
+</body>
+</html>

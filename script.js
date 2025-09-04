@@ -136,9 +136,9 @@ async function init() {
             ${p.colors.map(c => `<div class="w-4 h-4 rounded-full" style="background-color: ${c.code};"></div>`).join('')}
           </div>
           <p class="text-primary font-bold">${formatPrice(p.price)}</p>
-          <div class="flex gap-2 mt-4">
-            <button class="details bg-secondary text-white rounded-2xl px-4 py-2 font-bold flex-1 transition-all duration-300" data-id="${p.id}">عرض التفاصيل</button>
-            <button class="add-cart bg-primary text-white rounded-2xl px-4 py-2 font-bold flex-1 transition-all duration-300" data-id="${p.id}" data-has-colors="${p.colors.length > 1}">إضافة للسلة</button>
+          <div class="flex flex-col md:flex-row gap-2 mt-4">
+            <button class="details bg-secondary text-white rounded-2xl px-3 py-1 text-sm font-bold flex-1 transition-all duration-300" data-id="${p.id}">عرض التفاصيل</button>
+            <button class="add-cart bg-primary text-white rounded-2xl px-3 py-1 text-sm font-bold flex-1 transition-all duration-300" data-id="${p.id}" data-has-colors="${p.colors.length > 1}">إضافة للسلة</button>
           </div>
         `;
         card.addEventListener('click', (e) => {
@@ -186,11 +186,22 @@ async function init() {
     document.getElementById('product-price').textContent = formatPrice(product.price);
     document.getElementById('product-description').textContent = product.description;
 
-    let selectedColorIndex = 0;
+    let selectedColorIndex = -1; // -1 for 'all'
     const swatches = document.getElementById('color-swatches');
+    const allButton = document.createElement('button');
+    allButton.className = 'w-8 h-8 rounded-full ring-2 ring-offset-2 transition-all duration-300 ring-primary';
+    allButton.innerHTML = '<span class="text-sm">الكل</span>';
+    allButton.addEventListener('click', () => {
+      selectedColorIndex = -1;
+      updateGallery();
+      swatches.querySelectorAll('button').forEach(b => b.classList.replace('ring-primary', 'ring-transparent'));
+      allButton.classList.replace('ring-transparent', 'ring-primary');
+    });
+    swatches.appendChild(allButton);
+
     product.colors.forEach((color, index) => {
       const button = document.createElement('button');
-      button.className = `w-8 h-8 rounded-full ring-2 ring-offset-2 transition-all duration-300 ${index === 0 ? 'ring-primary' : 'ring-transparent'}`;
+      button.className = `w-8 h-8 rounded-full ring-2 ring-offset-2 transition-all duration-300 ring-transparent`;
       button.style.backgroundColor = color.code;
       button.ariaLabel = color.name;
       button.addEventListener('click', () => {
@@ -205,10 +216,15 @@ async function init() {
     const mainImage = document.getElementById('main-image');
     const thumbnails = document.getElementById('thumbnails');
     function updateGallery() {
-      const color = product.colors[selectedColorIndex];
-      mainImage.src = color.images[0];
+      let images = [];
+      if (selectedColorIndex === -1) {
+        product.colors.forEach(color => images = images.concat(color.images));
+      } else {
+        images = product.colors[selectedColorIndex].images;
+      }
+      mainImage.src = images[0];
       thumbnails.innerHTML = '';
-      color.images.forEach((img, idx) => {
+      images.forEach((img, idx) => {
         const thumb = document.createElement('img');
         thumb.src = img;
         thumb.alt = '';
@@ -238,6 +254,10 @@ async function init() {
 
     // Add to cart
     document.getElementById('add-to-cart').addEventListener('click', () => {
+      if (selectedColorIndex === -1) {
+        showToast('برجاء اختيار اللون');
+        return;
+      }
       const color = product.colors[selectedColorIndex];
       addToCart({
         id: product.id,
@@ -269,6 +289,7 @@ async function init() {
     const itemsContainer = document.getElementById('cart-items');
     const emptyCart = document.getElementById('empty-cart');
     const grandTotal = document.getElementById('grand-total');
+    itemsContainer.innerHTML = ''; // Clear before rendering
     if (cart.length === 0) {
       emptyCart.classList.remove('hidden');
     } else {
@@ -347,7 +368,7 @@ async function init() {
       window.open(`https://wa.me/${settings.whatsapp}?text=${encoded}`, '_blank');
     });
   } else if (path === 'contact.html') {
-    // No changes needed
+    // No additional JS needed
   }
 }
 
