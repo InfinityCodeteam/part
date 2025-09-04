@@ -18,19 +18,42 @@
 }
 
 /* Animated gradient for hero banner with more random movement */
+/* Animated gradient for hero banner with more random movement */
 .animated-gradient {
-  background: linear-gradient(135deg, #ff3366, #ffb703, #ff3366);
-  background-size: 300% 300%;
-  animation: gradient-move 10s ease infinite alternate;
+  background: linear-gradient(
+    -45deg,
+    #ff3366,
+    #ffb703,
+    #06d6a0,
+    #118ab2,
+    #9b5de5,
+    #f15bb5,
+    #fee440,
+    #00bbf9
+  );
+  background-size: 400% 400%;
+  animation: gradient-move 18s ease-in-out infinite, gradient-tilt 25s linear infinite;
 }
 
+/* حركة أكثر عشوائية للخلفية */
 @keyframes gradient-move {
   0% { background-position: 0% 50%; }
-  25% { background-position: 100% 0%; }
-  50% { background-position: 50% 100%; }
-  75% { background-position: 0% 100%; }
-  100% { background-position: 100% 50%; }
+  15% { background-position: 50% 100%; }
+  30% { background-position: 100% 50%; }
+  45% { background-position: 50% 0%; }
+  60% { background-position: 0% 100%; }
+  75% { background-position: 100% 0%; }
+  90% { background-position: 50% 50%; }
+  100% { background-position: 0% 50%; }
 }
+
+/* ميلان تدريجي للخلفية */
+@keyframes gradient-tilt {
+  0% { transform: rotate(0deg) scale(1.05); }
+  50% { transform: rotate(1deg) scale(1.1); }
+  100% { transform: rotate(-1deg) scale(1.05); }
+}
+
 
 /* Toast animation */
 @keyframes toast-slide {
