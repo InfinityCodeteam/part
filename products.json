@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "بالونة هليوم",
+    "category": "balloons",
+    "price": 15,
+    "description": "بالونة هليوم عالية الجودة مناسبة للحفلات.",
+    "colors": [
+      { "name": "أحمر", "code": "#ef4444", "images": ["images/balloon-red-1.jpg", "images/balloon-red-2.jpg"] },
+      { "name": "أزرق", "code": "#3b82f6", "images": ["images/balloon-blue-1.jpg"] },
+      { "name": "ذهبي", "code": "#f59e0b", "images": ["images/balloon-gold-1.jpg"] }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "فانوس رمضان خشبي",
+    "category": "lanterns",
+    "price": 120,
+    "description": "فانوس رمضان تقليدي بزخارف جميلة.",
+    "colors": [ { "name": "خشبي", "code": "#b45309", "images": ["images/lantern-wood.jpg"] } ]
+  },
+  {
+    "id": 3,
+    "name": "مج آيس كوفي إزاز",
+    "category": "gifts",
+    "price": 35,
+    "description": "مج شفاف مناسب للمشروبات الباردة.",
+    "colors": [ { "name": "شفاف", "code": "#94a3b8", "images": ["images/mug-1.jpg"] } ]
+  }
+]
